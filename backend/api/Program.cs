@@ -10,6 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddApplicationService(builder.Configuration);
 builder.Services.AddRepositoryService();
 builder.Services.AddIdentityService(builder.Configuration);
+// Projekt Chat parsa.
+builder.Services.AddControllers();
+builder.Services.AddSignalR();
 
 var app = builder.Build();
 
@@ -21,9 +24,12 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseStaticFiles();
 
+
 app.UseCors();
 
 app.UseAuthentication();
+
+app.MapHub<ChatHub>("/chatHub");
 
 app.UseAuthorization();
 
