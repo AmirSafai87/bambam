@@ -13,6 +13,7 @@ public static class RepositoryServiceExtensions
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IPhotoModifySaveService, PhotoModifySaveService>();
+        Services.AddScoped<IChatRepository, ChatRepository>();
         services.AddScoped<IPhotoService, PhotoService>();
         
         return services;
