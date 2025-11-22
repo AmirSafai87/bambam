@@ -1,6 +1,7 @@
 using api.Interfaces;
 using api.Models;
 using api.Settings;
+using AspNetCore.Identity.MongoDbCore.Infrastructure;
 using MongoDB.Driver;
 
 namespace api.Repositories;
@@ -9,7 +10,7 @@ public class ChatRepository : IChatRepository
 {
     private  readonly IMongoCollection<ChatMessage> _collection;
 
-    public ChatRepository(IMongoClient client, IMongoDbSettings dbSettings)
+    public ChatRepository(IMongoClient client, MongoDbSettings dbSettings)
     {
         var dbName = client.GetDatabase(dbSettings.DatabaseName);
         _collection = dbName.GetCollection<ChatMessage>("chats");
