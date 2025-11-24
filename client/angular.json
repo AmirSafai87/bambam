@@ -1,9 +1,13 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
+  "cli": {
+    "packageManager": "npm",
+    "analytics": "e02765f4-441e-4cd5-aee8-ac304ebb7b89"
+  },
   "newProjectRoot": "projects",
   "projects": {
-    "bambam": {
+    "client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -28,12 +32,7 @@
             ],
             "styles": [
               "src/styles.scss"
-            ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            ]
           },
           "configurations": {
             "production": {
@@ -63,32 +62,16 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "bambam:build:production"
+              "buildTarget": "client:build:production"
             },
             "development": {
-              "buildTarget": "bambam:build:development"
+              "buildTarget": "client:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
-        "extract-i18n": {
-          "builder": "@angular/build:extract-i18n"
-        },
         "test": {
-          "builder": "@angular/build:karma",
-          "options": {
-            "tsConfig": "tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
-            "styles": [
-              "src/styles.scss"
-            ]
-          }
+          "builder": "@angular/build:unit-test"
         }
       }
     }
